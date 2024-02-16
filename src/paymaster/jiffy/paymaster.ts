@@ -19,12 +19,14 @@ export class JiffyPaymaster extends Paymaster {
             entryPoint: entryPoint
         }));
         const paymasterResJson = await paymasterRes.json() as { paymasterAndData: `0x${string}`, callGasLimit: string, preVerificationGas: string, verificationGasLimit: string };
-        modifiedUserOperation = {
-            ...modifiedUserOperation,
-            callGasLimit: BigInt(paymasterResJson.callGasLimit),
-            preVerificationGas: BigInt(paymasterResJson.preVerificationGas),
-            verificationGasLimit: BigInt(paymasterResJson.verificationGasLimit),
-            paymasterAndData: paymasterResJson && paymasterResJson.paymasterAndData ? paymasterResJson.paymasterAndData : "0x",
+        if (paymasterResJson?.callGasLimit) {
+            modifiedUserOperation = {
+                ...modifiedUserOperation,
+                callGasLimit: BigInt(paymasterResJson.callGasLimit),
+                preVerificationGas: BigInt(paymasterResJson.preVerificationGas),
+                verificationGasLimit: BigInt(paymasterResJson.verificationGasLimit),
+                paymasterAndData: paymasterResJson && paymasterResJson.paymasterAndData ? paymasterResJson.paymasterAndData : "0x",
+            }
         }
         return modifiedUserOperation;
 

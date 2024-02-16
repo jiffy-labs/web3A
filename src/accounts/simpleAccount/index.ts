@@ -22,6 +22,9 @@ export type AccountClientOptions = {
 };
 
 export const getAccountClientFromPrivateKey = async ({ privateKey, network, index = 0n, version = 'v0.6', factoryType = ADDRESS_TYPES.SIMPLE_ACCOUNT, sponsoredBy = "None", bundlerUrl, paymasterUrl }: AccountClientOptions): Promise<SmartAccountClient> => {
+    if (sponsoredBy == "Jiffy" && !paymasterUrl) {
+        throw new Error("paymasterUrl is required if sponsoredBy is Jiffy");
+    }
     const publicClient = await createPublicClient({
         chain: NetworkChainMap[network],
         transport: http(NetworkChainMap[network].rpcUrls.default.http[0]),
