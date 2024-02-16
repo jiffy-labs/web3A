@@ -5,7 +5,7 @@ import "dotenv/config";
 
 const publicClient = await getPublicClient(Network.VANAR_TESTNET);
 const privateKey = process.env.PVT_KEY as `0x${string}`;
-const bundlerUrl = "https://vanar-testnet.jiffyscan.xyz/";
+const bundlerUrl = process.env.BUNDLER_URL as string;
 
 const accountClient = await getAccountClientFromPrivateKey({
     privateKey: process.env.PVT_KEY as `0x${string}`,
@@ -19,7 +19,7 @@ console.log('account address: ', accountClient.account?.address);
 
 // note: paymaster is not enabled , please deposit vanar to the account before running the rest of the script
 
-/*
+
 // @ts-ignore
 const tx = await accountClient.sendTransaction({
 
@@ -32,4 +32,4 @@ const tx = await accountClient.sendTransaction({
 
 console.log('txHash: ', tx);
 console.log(`explorer link:  https://explorer-vanguard.vanarchain.com/tx/${tx}`);
-*/
+

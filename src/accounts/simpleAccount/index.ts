@@ -15,9 +15,10 @@ export type AccountClientOptions = {
     index?: bigint;
     sponsoredBy: "None" | "Jiffy";
     bundlerUrl: string;
+    paymasterUrl?: string;
 };
 
-export const getAccountClientFromPrivateKey = async ({ privateKey, network, index = 0n, version = 'v0.6', factoryType = ADDRESS_TYPES.SIMPLE_ACCOUNT, sponsoredBy = "None", bundlerUrl }: AccountClientOptions): Promise<SmartAccountClient> => {
+export const getAccountClientFromPrivateKey = async ({ privateKey, network, index = 0n, version = 'v0.6', factoryType = ADDRESS_TYPES.SIMPLE_ACCOUNT, sponsoredBy = "None", bundlerUrl, paymasterUrl }: AccountClientOptions): Promise<SmartAccountClient> => {
     const publicClient = await createPublicClient({
         chain: NetworkChainMap[network],
         transport: http(NetworkChainMap[network].rpcUrls.default.http[0]),
