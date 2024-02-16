@@ -11,6 +11,7 @@
     },
     "devDependencies": {
         "@biomejs/biome": "1.5.3",
+        "@types/node": "^20.11.19",
         "bun-types": "latest"
     },
     "peerDependencies": {
@@ -23,11 +24,5 @@
         "json-rpc-2.0": "^1.7.0",
         "permissionless": "^0.0.31",
         "viem": "^2.5.0"
-    },
-    "exports": {
-        "./accounts": {
-            "import": "./build/simpleAccount/index.ts",
-            "require": "./build/simpleAccount/index.js"
-        }
     }
 }
