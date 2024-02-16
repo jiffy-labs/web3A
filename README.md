@@ -1,5 +1,7 @@
 # web3a
 
+Library created by writing a wrapper on top of Permissionless js and viem. Hopefully , this works out simpler for newer developers to understand 4337.
+
 To install dependencies:
 
 ```bash
