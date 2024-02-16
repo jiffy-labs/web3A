@@ -13,7 +13,7 @@ const accountClient = await getAccountClientFromPrivateKey({
     privateKey: privateKey,
     network: network,
     bundlerUrl: bundlerUrl,
-    index: 39n,
+    index: 0n,
 })
 
 const address = accountClient.account?.address;
@@ -25,7 +25,7 @@ const balance = await publicClient.getBalance({
     address: address as `0x${string}`
 })
 
-if (balance > parseEther("0.01")) {
+if (balance > parseEther("0.05")) {
     // @ts-ignore
     const tx = await accountClient.sendTransaction({
         to: "0x9fd25AC3Ac6dfb00C4d11FA32E8454525bF4cFD0",
