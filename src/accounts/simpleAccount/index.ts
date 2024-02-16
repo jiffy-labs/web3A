@@ -13,7 +13,7 @@ export type AccountClientOptions = {
     privateKey: `0x${string}`;
     factoryType?: ADDRESS_TYPES;
     index?: bigint;
-    sponsoredBy: "None" | "Jiffy";
+    sponsoredBy?: "None" | "Jiffy";
     bundlerUrl: string;
     paymasterUrl?: string;
 };
