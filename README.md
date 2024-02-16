@@ -9,7 +9,7 @@ bun install
 To run:
 
 ```bash
-bun run src/index.ts
+bun run examples/index.ts
 ```
 
 1. This will give an address generated. `account address: <address>`
