@@ -19,6 +19,7 @@ console.log('account address: ', accountClient.account?.address);
 
 // note: paymaster is not enabled , please deposit vanar to the account before running the rest of the script
 
+/*
 // @ts-ignore
 const tx = await accountClient.sendTransaction({
 
@@ -31,4 +32,4 @@ const tx = await accountClient.sendTransaction({
 
 console.log('txHash: ', tx);
 console.log(`explorer link:  https://explorer-vanguard.vanarchain.com/tx/${tx}`);
-
+*/
