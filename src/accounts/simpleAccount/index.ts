@@ -1,7 +1,10 @@
-import { InvalidHexValueError, PublicClient, createPublicClient, http } from "viem";
+import { Address, InvalidHexValueError, PublicClient, createPublicClient, http } from "viem";
 import { ADDRESS_FACTORY_MAP, ADDRESS_TYPES, ENTRY_POINT_MAP, Network, NetworkChainMap, PUBLIC_RPC, SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP, vanarTestnet } from "../../common/constants";
 import { privateKeyToSimpleSmartAccount } from "permissionless/accounts";
 import { SmartAccountClient, createSmartAccountClient } from "permissionless";
+import { createPimlicoBundlerClient } from "permissionless/clients/pimlico";
+import { UserOperation } from "../../types";
+import { JiffyPaymaster } from "../../paymaster/jiffy/paymaster";
 
 export const publicClient: PublicClient = createPublicClient({
     transport: http("https://rpca-vanguard.vanarchain.com/"),
@@ -31,12 +34,25 @@ export const getAccountClientFromPrivateKey = async ({ privateKey, network, inde
         index: index || 0n,
     });
 
+    const bundlerClient = createPimlicoBundlerClient({
+        transport: http(
+            bundlerUrl
+        ),
+    });
+
+    const paymasterClient = paymasterUrl && sponsoredBy == "Jiffy" ? new JiffyPaymaster(
+        paymasterUrl,
+        publicClient?.chain.id,
+    ) : undefined;
+
+
     return createSmartAccountClient({
         account: account,
         chain: NetworkChainMap[network],
         transport: http(
             bundlerUrl
         ),
+        sponsorUserOperation: paymasterClient ? paymasterClient.sponsorUserOperation : undefined,
     });
 }
 

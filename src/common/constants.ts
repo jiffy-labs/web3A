@@ -5,6 +5,7 @@ export enum Network {
     SEPOLIA,
     VANAR_TESTNET
 }
+
 export const vanarTestnet = defineChain({
     id: 78600,
     name: 'Vanar Testnet',

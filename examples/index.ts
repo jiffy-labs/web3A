@@ -6,6 +6,7 @@ import "dotenv/config";
 const publicClient = await getPublicClient(Network.VANAR_TESTNET);
 const privateKey = process.env.PVT_KEY as `0x${string}`;
 const bundlerUrl = process.env.BUNDLER_URL as string;
+const paymasterUrl = process.env.PAYMASTER_URL as string;
 const network = Network.VANAR_TESTNET;
 
 
@@ -14,6 +15,8 @@ const accountClient = await getAccountClientFromPrivateKey({
     network: network,
     bundlerUrl: bundlerUrl,
     index: 0n,
+    sponsoredBy: "Jiffy",
+    paymasterUrl: paymasterUrl,
 })
 
 const address = accountClient.account?.address;
@@ -28,7 +31,7 @@ const balance = await publicClient.getBalance({
 if (balance > parseEther("0.05")) {
     // @ts-ignore
     const tx = await accountClient.sendTransaction({
-        to: "0x9fd25AC3Ac6dfb00C4d11FA32E8454525bF4cFD0",
+        to: "0x8D582d98980248F1F0849710bd0626aDE4c44E3D",
         value: parseEther("0.0001"),
         maxFeePerGas: 1000000000n,
         maxPriorityFeePerGas: 1000000000n,
