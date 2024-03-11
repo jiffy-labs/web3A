@@ -35,7 +35,7 @@ export enum ADDRESS_TYPES {
 }
 
 export const SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP = {
-    [Network.VANAR_TESTNET]: "0x9fd25AC3Ac6dfb00C4d11FA32E8454525bF4cFD0",
+    [Network.VANAR_TESTNET]: "0xeD08Bfd2478C9616f2E2F51F4f6b28D3EE16F99B",
     [Network.SEPOLIA]: "0x9fd25AC3Ac6dfb00C4d11FA32E8454525bF4cFD0"
 }
 
@@ -50,7 +50,7 @@ export const PUBLIC_RPC = {
 
 export const ENTRY_POINT_MAP = {
     [Network.VANAR_TESTNET]: {
-        "v0.6": "0x161fC9f03De9d8AA9869A0C031834E9735F86042" as `0x${string}`
+        "v0.6": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789" as `0x${string}`
     },
     [Network.SEPOLIA]: {
         "v0.6": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789" as `0x${string}`
