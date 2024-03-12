@@ -9,6 +9,15 @@ import { JiffyPaymaster } from "../../paymaster/jiffy/paymaster";
 export const publicClient: PublicClient = createPublicClient({
     transport: http("https://rpca-vanguard.vanarchain.com/"),
 });
+export type Bundler = {
+    url: string;
+    header: Record<string, string>;
+};
+export type Paymaster = {
+    sponsoredBy: "None" | "Jiffy";
+    url: string;
+    header: Record<string, string>;
+};
 
 export type AccountClientOptions = {
     version?: "v0.6";
@@ -16,15 +25,15 @@ export type AccountClientOptions = {
     privateKey: `0x${string}`;
     factoryType?: ADDRESS_TYPES;
     index?: bigint;
-    sponsoredBy?: "None" | "Jiffy";
-    bundlerUrl: string;
-    paymasterUrl?: string;
+    bundler: Bundler;
+    paymaster: Paymaster;
 };
 
-export const getAccountClientFromPrivateKey = async ({ privateKey, network, index = 0n, version = 'v0.6', factoryType = ADDRESS_TYPES.SIMPLE_ACCOUNT, sponsoredBy = "None", bundlerUrl, paymasterUrl }: AccountClientOptions): Promise<SmartAccountClient> => {
-    if (sponsoredBy == "Jiffy" && !paymasterUrl) {
+export const getAccountClientFromPrivateKey = async ({ privateKey, network, index = 0n, version = 'v0.6', factoryType = ADDRESS_TYPES.SIMPLE_ACCOUNT, bundler, paymaster }: AccountClientOptions): Promise<SmartAccountClient> => {
+    if (paymaster.sponsoredBy == "Jiffy" && !paymaster.url) {
         throw new Error("paymasterUrl is required if sponsoredBy is Jiffy");
     }
+
     const publicClient = await createPublicClient({
         chain: NetworkChainMap[network],
         transport: http(NetworkChainMap[network].rpcUrls.default.http[0]),
@@ -39,13 +48,18 @@ export const getAccountClientFromPrivateKey = async ({ privateKey, network, inde
 
     const bundlerClient = createPimlicoBundlerClient({
         transport: http(
-            bundlerUrl
+            bundler.url, {
+            fetchOptions: {
+                headers: bundler.header
+            }
+        }
         ),
     });
 
-    const paymasterClient = paymasterUrl && sponsoredBy == "Jiffy" ? new JiffyPaymaster(
-        paymasterUrl,
+    const paymasterClient = paymaster.url && paymaster.sponsoredBy == "Jiffy" ? new JiffyPaymaster(
+        paymaster.url,
         publicClient?.chain.id,
+        paymaster.header
     ) : undefined;
 
 
@@ -53,7 +67,11 @@ export const getAccountClientFromPrivateKey = async ({ privateKey, network, inde
         account: account,
         chain: NetworkChainMap[network],
         transport: http(
-            bundlerUrl
+            bundler.url, {
+            fetchOptions: {
+                headers: bundler.header
+            }
+        }
         ),
         sponsorUserOperation: paymasterClient ? paymasterClient.sponsorUserOperation : undefined,
     });
