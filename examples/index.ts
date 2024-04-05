@@ -1,8 +1,11 @@
-import { parseEther } from 'viem';
-import { getAccountClientFromPrivateKey, getPublicClient } from '../src/accounts/simpleAccount/index.ts';
-import { Network } from '../src/common/constants.ts';
+import { parseEther } from "viem";
+import {
+  getAccountClientFromPrivateKey,
+  getPublicClient,
+} from "../dist/index.js";
+import { Network } from "../dist/index.js";
 import "dotenv/config";
-import { getRequiredPrefund } from 'permissionless';
+import { getRequiredPrefund } from "permissionless";
 
 const publicClient = await getPublicClient(Network.VANAR_TESTNET);
 const privateKey = process.env.PVT_KEY as `0x${string}`;
@@ -11,43 +14,40 @@ const paymasterUrl = process.env.PAYMASTER_URL as string;
 const network = Network.VANAR_TESTNET;
 const JIFFYSCAN_API_KEY = process.env.JIFFYSCAN_API_KEY as string;
 
-
 const accountClient = await getAccountClientFromPrivateKey({
-    privateKey: privateKey,
-    network: network,
-    bundler: {
-        url: bundlerUrl,
-        header: { 'x-api-key': JIFFYSCAN_API_KEY }
-    },
-    index: 0n,
-    paymaster: {
-        sponsoredBy: "Jiffy", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
-        url: paymasterUrl,
-        header: { 'x-api-key': JIFFYSCAN_API_KEY }
-    }
-})
+  privateKey: privateKey,
+  network: network,
+  bundler: {
+    url: bundlerUrl,
+    header: { "x-api-key": JIFFYSCAN_API_KEY },
+  },
+  index: 0n,
+  paymaster: {
+    sponsoredBy: "Jiffy", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
+    url: paymasterUrl,
+    header: { "x-api-key": JIFFYSCAN_API_KEY },
+  },
+});
 
 const address = accountClient.account?.address;
-console.log('account address: ', address);
+console.log("account address: ", address);
 
 // note: paymaster is not enabled , please deposit vanar to the account before running the rest of the script
 
 const balance = await publicClient.getBalance({
-    address: address as `0x${string}`
-})
+  address: address as `0x${string}`,
+});
 
 if (paymasterUrl || balance > parseEther("0.04")) {
-    // @ts-ignore
-    const tx = await accountClient.sendTransaction({
-        to: "0x8D582d98980248F1F0849710bd0626aDE4c44E3D",
-        value: 100_000_000n,
-        maxFeePerGas: 1_000_000_000n,
-        maxPriorityFeePerGas: 1_000_000_000n,
-    });
+  // @ts-ignore
+  const tx = await accountClient.sendTransaction({
+    to: "0x8D582d98980248F1F0849710bd0626aDE4c44E3D",
+    value: 100_000_000n,
+    maxFeePerGas: 1_000_000_000n,
+    maxPriorityFeePerGas: 1_000_000_000n,
+  });
 
-
-    console.log('txHash: ', tx);
+  console.log("txHash: ", tx);
 } else {
-    console.log('account does not have enough balance');
+  console.log("account does not have enough balance");
 }
-

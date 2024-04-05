@@ -1,28 +1,35 @@
 {
-    "name": "web3a",
-    "module": "index.ts",
-    "type": "module",
-    "scripts": {
-        "dev": "bun --watch src/index.ts",
-        "build": "bun build src/index.ts",
-        "build-esm": "bun build ./src/accounts/simpleAccount --outdir ./build",
-        "start": "NODE_ENV=production bun src/index.ts",
-        "test": "bun test"
-    },
-    "devDependencies": {
-        "@biomejs/biome": "1.5.3",
-        "@types/node": "^20.11.19",
-        "bun-types": "latest"
-    },
-    "peerDependencies": {
-        "typescript": "^5.0.0"
-    },
-    "dependencies": {
-        "@open-rpc/client-js": "^1.8.1",
-        "dotenv": "^16.4.1",
-        "fs": "^0.0.1-security",
-        "json-rpc-2.0": "^1.7.0",
-        "permissionless": "^0.0.31",
-        "viem": "^2.5.0"
-    }
+  "name": "web3a",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "build": "tsup ./src/index.ts --format cjs,esm --dts",
+    "release": "pnpm run build && changeset publish",
+    "lint": "tsc",
+    "build-esm": "bun build ./src/accounts/simpleAccount --outdir ./build",
+    "start": "NODE_ENV=production bun src/index.ts",
+    "test": "bun test"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.5.3",
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.11.19",
+    "bun-types": "latest",
+    "tsup": "^8.0.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@open-rpc/client-js": "^1.8.1",
+    "dotenv": "^16.4.1",
+    "fs": "^0.0.1-security",
+    "json-rpc-2.0": "^1.7.0",
+    "permissionless": "^0.0.31",
+    "viem": "^2.5.0"
+  }
 }
