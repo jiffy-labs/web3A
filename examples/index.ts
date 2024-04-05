@@ -1,9 +1,6 @@
 import { parseEther } from "viem";
-import {
-  getAccountClientFromPrivateKey,
-  getPublicClient,
-} from "../dist/index.js";
-import { Network } from "../dist/index.js";
+import { getAccountClientFromPrivateKey, getPublicClient } from "../dist/index";
+import { Network } from "../dist/index";
 import "dotenv/config";
 import { getRequiredPrefund } from "permissionless";
 

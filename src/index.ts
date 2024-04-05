@@ -1,7 +1,7 @@
 import {
   getAccountClientFromPrivateKey,
   getPublicClient,
-} from "../src/accounts/simpleAccount/index.ts";
-import { Network } from "../src/common/constants.ts";
+} from "./accounts/simpleAccount/index";
+import { Network } from "./common/constants";
 
 export { getAccountClientFromPrivateKey, getPublicClient, Network };
