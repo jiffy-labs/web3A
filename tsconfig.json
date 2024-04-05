@@ -18,9 +18,11 @@
     "types": [
       "node" // add Bun global
     ],
-    "include": ["src/**/*"],
+
     "verbatimModuleSyntax": true,
     "resolveJsonModule": true,
     "noUncheckedIndexedAccess": true
-  }
+  },
+  "exclude": ["examples/**/*"],
+  "include": ["src/**/*"]
 }

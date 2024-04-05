@@ -1,7 +1,7 @@
 lockfileVersion: '6.0'
 
 settings:
-  autoInstallPeers: false
+  autoInstallPeers: true
   excludeLinksFromLockfile: false
 
 dependencies:
@@ -20,9 +20,12 @@ dependencies:
   permissionless:
     specifier: ^0.0.31
     version: 0.0.31(viem@2.7.9)
+  typescript:
+    specifier: ^5.3.3
+    version: 5.4.4
   viem:
     specifier: ^2.5.0
-    version: 2.7.9
+    version: 2.7.9(typescript@5.4.4)
 
 devDependencies:
   '@biomejs/biome':
@@ -39,7 +42,7 @@ devDependencies:
     version: 1.0.26
   tsup:
     specifier: ^8.0.2
-    version: 8.0.2
+    version: 8.0.2(typescript@5.4.4)
 
 packages:
 
@@ -840,7 +843,7 @@ packages:
       '@types/node': 20.11.19
     dev: true
 
-  /abitype@1.0.0:
+  /abitype@1.0.0(typescript@5.4.4):
     resolution: {integrity: sha512-NMeMah//6bJ56H5XRj8QCV4AwuW6hB6zqz2LnhhLdcWVQOsXki6/Pn3APeqxCma62nXIcmZWdu1DlHWS74umVQ==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -850,6 +853,8 @@ packages:
         optional: true
       zod:
         optional: true
+    dependencies:
+      typescript: 5.4.4
     dev: false
 
   /ansi-colors@4.1.3:
@@ -2287,7 +2292,7 @@ packages:
     peerDependencies:
       viem: ^2.0.0
     dependencies:
-      viem: 2.7.9
+      viem: 2.7.9(typescript@5.4.4)
     dev: false
 
   /picocolors@1.0.0:
@@ -2826,7 +2831,7 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /tsup@8.0.2:
+  /tsup@8.0.2(typescript@5.4.4):
     resolution: {integrity: sha512-NY8xtQXdH7hDUAZwcQdY/Vzlw9johQsaqf7iwZ6g1DOUlFYQ5/AtVAjTvihhEyeRlGo4dLRVHtrRaL35M1daqQ==}
     engines: {node: '>=18'}
     hasBin: true
@@ -2859,6 +2864,7 @@ packages:
       source-map: 0.8.0-beta.0
       sucrase: 3.35.0
       tree-kill: 1.2.2
+      typescript: 5.4.4
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -2937,6 +2943,11 @@ packages:
       possible-typed-array-names: 1.0.0
     dev: true
 
+  /typescript@5.4.4:
+    resolution: {integrity: sha512-dGE2Vv8cpVvw28v8HCPqyb08EzbBURxDpuhJvTrusShUfGnhHBafDsLdS1EhhxyL6BJQE+2cT3dDPAv+MQ6oLw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   /unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
     dependencies:
@@ -2962,7 +2973,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /viem@2.7.9:
+  /viem@2.7.9(typescript@5.4.4):
     resolution: {integrity: sha512-iDfc8TwaZFp1K95zlsxYh6Cs0OWCt35Tqs8uYgXKSxtz7w075mZ0H5SJ8zSyJGoEaticVDhtdmRRX6TtcW9EeQ==}
     peerDependencies:
       typescript: '>=5.0.4'
@@ -2975,8 +2986,9 @@ packages:
       '@noble/hashes': 1.3.2
       '@scure/bip32': 1.3.2
       '@scure/bip39': 1.2.1
-      abitype: 1.0.0
+      abitype: 1.0.0(typescript@5.4.4)
       isows: 1.0.3(ws@8.13.0)
+      typescript: 5.4.4
       ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil
