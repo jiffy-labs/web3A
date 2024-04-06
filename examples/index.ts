@@ -1,6 +1,9 @@
 import { parseEther } from "viem";
-import { getAccountClientFromPrivateKey, getPublicClient } from "../dist/index";
-import { Network } from "../dist/index";
+import {
+  getAccountClientFromPrivateKey,
+  getPublicClient,
+} from "@jiffy-labs/web3a";
+import { Network } from "@jiffy-labs/web3a";
 import "dotenv/config";
 import { getRequiredPrefund } from "permissionless";
 
