@@ -1,9 +1,6 @@
 import { parseEther } from "viem";
-import {
-  getAccountClientFromPrivateKey,
-  getPublicClient,
-} from "@jiffy-labs/web3a";
-import { Network } from "@jiffy-labs/web3a";
+import { getAccountClientFromPrivateKeyV6, getPublicClient } from "../dist";
+import { Network } from "../dist";
 import "dotenv/config";
 import { getRequiredPrefund } from "permissionless";
 
@@ -14,7 +11,7 @@ const paymasterUrl = process.env.PAYMASTER_URL as string;
 const network = Network.VANAR_TESTNET;
 const JIFFYSCAN_API_KEY = process.env.JIFFYSCAN_API_KEY as string;
 
-const accountClient = await getAccountClientFromPrivateKey({
+const accountClient = await getAccountClientFromPrivateKeyV6({
   privateKey: privateKey,
   network: network,
   bundler: {
@@ -23,7 +20,7 @@ const accountClient = await getAccountClientFromPrivateKey({
   },
   index: 0n,
   paymaster: {
-    sponsoredBy: "Jiffy", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
+    sponsoredBy: "None", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
     url: paymasterUrl,
     header: { "x-api-key": JIFFYSCAN_API_KEY },
   },

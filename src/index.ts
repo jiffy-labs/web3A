@@ -1,7 +1,7 @@
 import {
-  getAccountClientFromPrivateKey,
+  getAccountClientFromPrivateKeyV6, getAccountClientFromPrivateKeyV7,
   getPublicClient,
 } from "./accounts/simpleAccount/index";
-import { Network } from "./common/constants";
+import { Network, NetworkChainMap } from "./common/constants";
 
-export { getAccountClientFromPrivateKey, getPublicClient, Network };
+export { getAccountClientFromPrivateKeyV6, getAccountClientFromPrivateKeyV7, getPublicClient, Network, NetworkChainMap };

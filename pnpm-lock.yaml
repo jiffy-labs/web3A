@@ -18,8 +18,8 @@ dependencies:
     specifier: ^1.7.0
     version: 1.7.0
   permissionless:
-    specifier: ^0.0.31
-    version: 0.0.31(viem@2.7.9)
+    specifier: ^0.1.18
+    version: 0.1.18(viem@2.7.9)
   typescript:
     specifier: ^5.3.3
     version: 5.4.4
@@ -2287,10 +2287,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /permissionless@0.0.31(viem@2.7.9):
-    resolution: {integrity: sha512-vRfCWKGwWPKoo3BPVyWgaQun2dKOvzWTtLDxj+8Cs57KRlQyqeS8qBm9iYwM8FRt5WmnABQaeCRHZWmpLarXdw==}
+  /permissionless@0.1.18(viem@2.7.9):
+    resolution: {integrity: sha512-A3OBQfA/wj+Qj5zXyMEoKwuwd+GgImG9EFYYtLHPooDJ26CL44HJpY27owH5MPsUS6IX+1E9N6mF4J/frQhXoQ==}
     peerDependencies:
-      viem: ^2.0.0
+      viem: ^2.9.17
     dependencies:
       viem: 2.7.9(typescript@5.4.4)
     dev: false

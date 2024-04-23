@@ -9,6 +9,7 @@ import { type RPCResponse, type UserOperation } from "../types";
 export abstract class SmartAccount {
   abstract address: `0x${string}` | null;
   abstract client: PublicClient;
+  // @ts-ignore
   abstract bundlerClient: BundlerClient;
 
   abstract isDeployed(): Promise<boolean>;

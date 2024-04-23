@@ -1,3 +1,4 @@
+import { ENTRYPOINT_ADDRESS_V06, ENTRYPOINT_ADDRESS_V07 } from "permissionless";
 import { defineChain } from "viem";
 import { type Chain, lineaTestnet, polygonMumbai, sepolia } from "viem/chains";
 
@@ -37,26 +38,43 @@ export enum ADDRESS_TYPES {
   SIMPLE_ACCOUNT,
 }
 
-export const SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP = {
-  [Network.VANAR_TESTNET]: "0xeD08Bfd2478C9616f2E2F51F4f6b28D3EE16F99B",
-  [Network.SEPOLIA]: "0x9fd25AC3Ac6dfb00C4d11FA32E8454525bF4cFD0",
+interface FactoryAddresses {
+  "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789": `0x${string}`;
+  "0x0000000071727De22E5E9d8BAf0edAc6f37da032": `0x${string}`;
+}
+
+export const SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP: Record<
+  Network,
+  FactoryAddresses
+> = {
+  [Network.VANAR_TESTNET]: {
+    "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789":
+      "0xeD08Bfd2478C9616f2E2F51F4f6b28D3EE16F99B",
+    "0x0000000071727De22E5E9d8BAf0edAc6f37da032":
+      "0x41f9E11556e0119E452dF67B2311EC46071ad6c7",
+  },
+  [Network.SEPOLIA]: {
+    "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789":
+      "0x9fd25AC3Ac6dfb00C4d11FA32E8454525bF4cFD0",
+    "0x0000000071727De22E5E9d8BAf0edAc6f37da032":
+      "0xe0e7da3f07745fa3c3b3c3d41db9ea8d7c514633",
+  },
+};
+
+export const SIMPLE_ACCOUNT_FACTORY_V7_ADDRESS_MAP = {
+  [Network.VANAR_TESTNET]: "0x41f9E11556e0119E452dF67B2311EC46071ad6c7",
 };
 
 export const ADDRESS_FACTORY_MAP = {
   [ADDRESS_TYPES.SIMPLE_ACCOUNT]: SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP,
 };
 
+export type ENTRY_POINT =
+  | "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789"
+  | "0x0000000071727De22E5E9d8BAf0edAc6f37da032";
+
 export const PUBLIC_RPC = {
   [Network.VANAR_TESTNET]: "https://rpca-vanguard.vanarchain.com/",
-};
-
-export const ENTRY_POINT_MAP = {
-  [Network.VANAR_TESTNET]: {
-    "v0.6": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789" as `0x${string}`,
-  },
-  [Network.SEPOLIA]: {
-    "v0.6": "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789" as `0x${string}`,
-  },
 };
 
 export const PUBLIC_RPC_MAP = {

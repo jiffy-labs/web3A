@@ -1,6 +1,7 @@
 import { type UserOperation } from "permissionless";
 import { Paymaster } from "../paymaster";
 import { type Address } from "viem";
+import type { EntryPointVersion } from "permissionless/types";
 
 export class JiffyPaymaster extends Paymaster {
   paymasterUrl: string;
@@ -18,9 +19,10 @@ export class JiffyPaymaster extends Paymaster {
   }
 
   sponsorUserOperation = async (args: {
-    userOperation: UserOperation;
+
+    userOperation: UserOperation<"v0.6">;
     entryPoint: Address;
-  }): Promise<UserOperation> => {
+  }): Promise<UserOperation<"v0.6">> => {
     const { userOperation, entryPoint } = args;
     let modifiedUserOperation = userOperation;
     let paymasterRes = null;
@@ -32,12 +34,12 @@ export class JiffyPaymaster extends Paymaster {
 
     paymasterRes = await fetch(
       `${this.paymasterUrl}/${this.chainId}/sponsorUserOperation?` +
-        new URLSearchParams({
-          userOperation: JSON.stringify(modifiedUserOperation, (key, value) =>
-            typeof value === "bigint" ? value.toString() : value
-          ),
-          entryPoint: entryPoint,
-        }), // @ts-expect-error: Argument of type
+      new URLSearchParams({
+        userOperation: JSON.stringify(modifiedUserOperation, (key, value) =>
+          typeof value === "bigint" ? value.toString() : value
+        ),
+        entryPoint: entryPoint,
+      }), // @ts-expect-error: Argument of type
       options
     );
 
