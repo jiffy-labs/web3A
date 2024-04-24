@@ -1,10 +1,13 @@
 import { createWalletClient, formatEther, parseEther } from "viem";
-import { getAccountClientFromPrivateKeyV7, getPublicClient } from "../dist";
-import { Network } from "../dist";
+import {
+  getAccountClientFromPrivateKeyV7,
+  getPublicClient,
+} from "@jiffy-labs/web3a";
+import { Network } from "@jiffy-labs/web3a";
 import "dotenv/config";
 import { ENTRYPOINT_ADDRESS_V07 } from "permissionless";
 import { privateKeyToAccount } from "viem/accounts";
-import { NetworkChainMap } from "../dist";
+import { NetworkChainMap } from "@jiffy-labs/web3a";
 import { http } from "viem";
 import { defineChain } from "viem";
 

@@ -9,6 +9,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@jiffy-labs/web3a": "^0.0.1"
+    "@jiffy-labs/web3a": "^0.0.2"
   }
 }
+
