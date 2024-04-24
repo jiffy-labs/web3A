@@ -5,11 +5,6 @@ import {
 } from "@jiffy-labs/web3a";
 import { Network } from "@jiffy-labs/web3a";
 import "dotenv/config";
-import { ENTRYPOINT_ADDRESS_V07 } from "permissionless";
-import { privateKeyToAccount } from "viem/accounts";
-import { NetworkChainMap } from "@jiffy-labs/web3a";
-import { http } from "viem";
-import { defineChain } from "viem";
 
 const network = Network.VANAR_TESTNET;
 const publicClient = await getPublicClient(network);
