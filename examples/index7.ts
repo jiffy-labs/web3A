@@ -2,8 +2,8 @@ import { createWalletClient, formatEther, parseEther } from "viem";
 import {
   getAccountClientFromPrivateKeyV7,
   getPublicClient,
-} from "@jiffy-labs/web3a";
-import { Network } from "@jiffy-labs/web3a";
+} from "../dist";
+import { Network } from "../dist";
 import "dotenv/config";
 
 const network = Network.VANAR_TESTNET;
@@ -22,7 +22,7 @@ const accountClient = await getAccountClientFromPrivateKeyV7({
   },
   index: 0n,
   paymaster: {
-    sponsoredBy: "None", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
+    sponsoredBy: "Jiffy", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
     url: paymasterUrl,
     header: { "x-api-key": JIFFYSCAN_API_KEY },
   },

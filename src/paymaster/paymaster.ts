@@ -1,10 +1,15 @@
+import type { UserOperation } from "permissionless";
 import { type Address } from "viem";
-import { type UserOperation } from "../types";
 
 export abstract class Paymaster {
-  abstract sponsorUserOperation(args: {
-    userOperation: UserOperation;
+  abstract sponsorUserOperationV6(args: {
+    userOperation: UserOperation<"v0.6">;
     entryPoint: Address;
-  }): Promise<UserOperation>;
+  }): Promise<UserOperation<"v0.6">>;
+
+  abstract sponsorUserOperationV7(args: {
+    userOperation: UserOperation<"v0.7">;
+    entryPoint: Address;
+  }): Promise<UserOperation<"v0.7">>;
 }
 
