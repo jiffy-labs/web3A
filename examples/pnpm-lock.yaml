@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@jiffy-labs/web3a':
-    specifier: ^0.0.1
-    version: 0.0.1(typescript@5.4.4)
+    specifier: ^0.1.1
+    version: 0.1.2(typescript@5.4.4)
   typescript:
     specifier: ^5.0.0
     version: 5.4.4
@@ -23,8 +23,8 @@ packages:
     resolution: {integrity: sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q==}
     dev: false
 
-  /@jiffy-labs/web3a@0.0.1(typescript@5.4.4):
-    resolution: {integrity: sha512-187AOeRVgpUmTmJY8cyCsxyLGVxdMyUHDayaCNVH8kedrG7Dm4QgUqn27rY8Hgqom+U4BHaD99GY1w1YYUMNGQ==}
+  /@jiffy-labs/web3a@0.1.2(typescript@5.4.4):
+    resolution: {integrity: sha512-SkZcC2ELtM5kL0YaVi8xMZZ9uGjfCBJY5Eri77A6yWw4H84YGPss6z39//rU4kYh1FEPda78idYHFXeuSMvmHg==}
     peerDependencies:
       typescript: ^5.3.3
     dependencies:
@@ -32,9 +32,9 @@ packages:
       dotenv: 16.4.5
       fs: 0.0.1-security
       json-rpc-2.0: 1.7.0
-      permissionless: 0.0.31(viem@2.9.9)
+      permissionless: 0.1.22(viem@2.9.29)
       typescript: 5.4.4
-      viem: 2.9.9(typescript@5.4.4)
+      viem: 2.9.29(typescript@5.4.4)
     transitivePeerDependencies:
       - bufferutil
       - encoding
@@ -168,12 +168,12 @@ packages:
       whatwg-url: 5.0.0
     dev: false
 
-  /permissionless@0.0.31(viem@2.9.9):
-    resolution: {integrity: sha512-vRfCWKGwWPKoo3BPVyWgaQun2dKOvzWTtLDxj+8Cs57KRlQyqeS8qBm9iYwM8FRt5WmnABQaeCRHZWmpLarXdw==}
+  /permissionless@0.1.22(viem@2.9.29):
+    resolution: {integrity: sha512-C+1l3dkYKOicCilPXLbm5JfnLOKK+Efprg69SG+WRsNjuXHi4zSdQgex/7lF5hh4WvcaWRRMm1NCA523XlwCJw==}
     peerDependencies:
-      viem: ^2.0.0
+      viem: ^2.9.17
     dependencies:
-      viem: 2.9.9(typescript@5.4.4)
+      viem: 2.9.29(typescript@5.4.4)
     dev: false
 
   /strict-event-emitter-types@2.0.0:
@@ -194,8 +194,8 @@ packages:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
     dev: true
 
-  /viem@2.9.9(typescript@5.4.4):
-    resolution: {integrity: sha512-SUIHBL6M5IIlqDCMEQwAAvHzeglaM4FEqM6bCI+srLXtFYmrpV4tWhnpobQRNwh4f7HIksmKLLZ+cytv8FfnJQ==}
+  /viem@2.9.29(typescript@5.4.4):
+    resolution: {integrity: sha512-LWvDSyB2tftKuSMAyZTXk3pDYj3c0aaOdr2JbDZEsPJw5zVbqg3FpoPHnUkHai8KcZI8aPWRKV31TYV1cBse9A==}
     peerDependencies:
       typescript: '>=5.0.4'
     peerDependenciesMeta:

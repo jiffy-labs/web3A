@@ -33,12 +33,12 @@ export class JiffyPaymaster extends Paymaster {
 
     paymasterRes = await fetch(
       `${this.paymasterUrl}/${this.chainId}/sponsorUserOperation?` +
-        new URLSearchParams({
-          userOperation: JSON.stringify(modifiedUserOperation, (key, value) =>
-            typeof value === "bigint" ? value.toString() : value
-          ),
-          entryPoint: entryPoint,
-        }), // @ts-expect-error: Argument of type
+      new URLSearchParams({
+        userOperation: JSON.stringify(modifiedUserOperation, (key, value) =>
+          typeof value === "bigint" ? value.toString() : value
+        ),
+        entryPoint: entryPoint,
+      }), // @ts-expect-error: Argument of type
       options
     );
 
@@ -78,12 +78,12 @@ export class JiffyPaymaster extends Paymaster {
 
     paymasterRes = await fetch(
       `${this.paymasterUrl}/${this.chainId}/sponsorUserOperation?` +
-        new URLSearchParams({
-          userOperation: JSON.stringify(modifiedUserOperation, (key, value) =>
-            typeof value === "bigint" ? value.toString() : value
-          ),
-          entryPoint: entryPoint,
-        }), // @ts-expect-error: Argument of type
+      new URLSearchParams({
+        userOperation: JSON.stringify(modifiedUserOperation, (key, value) =>
+          typeof value === "bigint" ? value.toString() : value
+        ),
+        entryPoint: entryPoint,
+      }), // @ts-expect-error: Argument of type
       options
     );
 

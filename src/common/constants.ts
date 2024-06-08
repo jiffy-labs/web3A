@@ -5,6 +5,7 @@ import { type Chain, lineaTestnet, polygonMumbai, sepolia } from "viem/chains";
 export enum Network {
   SEPOLIA,
   VANAR_TESTNET,
+  VANAR_MAINNET,
 }
 
 export const vanarTestnet = defineChain({
@@ -29,9 +30,29 @@ export const vanarTestnet = defineChain({
   },
 });
 
+export const vanarMainnet = defineChain({
+  id: 2040,
+  name: "VANAR_MAINNET",
+  nativeCurrency: {
+    decimals: 18,
+    name: "VANRY",
+    symbol: "VANRY",
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://rpc.vanarchain.com"],
+      webSocket: ["wss://ws.vanarchain.com"],
+    },
+  },
+  blockExplorers: {
+    default: { name: "Explorer", url: "https://explorer.vanarchain.com" },
+  },
+});
+
 export const NetworkChainMap: Record<Network, Chain> = {
   [Network.SEPOLIA]: sepolia,
   [Network.VANAR_TESTNET]: vanarTestnet,
+  [Network.VANAR_MAINNET]: vanarMainnet,
 };
 
 export enum ADDRESS_TYPES {
@@ -52,6 +73,12 @@ export const SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP: Record<
       "0xeD08Bfd2478C9616f2E2F51F4f6b28D3EE16F99B",
     "0x0000000071727De22E5E9d8BAf0edAc6f37da032":
       "0x41f9E11556e0119E452dF67B2311EC46071ad6c7",
+  },
+  [Network.VANAR_MAINNET]: {
+    "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789":
+      "0xfA964fD7b7856Ce6AE6c9Af6a07e646A71531811",
+    "0x0000000071727De22E5E9d8BAf0edAc6f37da032":
+      "0x0baDC4D69Ac9e13786C8fC30eB543C3472Fd77EA",
   },
   [Network.SEPOLIA]: {
     "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789":

@@ -2,8 +2,8 @@ import { createWalletClient, formatEther, parseEther } from "viem";
 import {
   getAccountClientFromPrivateKeyV7,
   getPublicClient,
-} from "../dist";
-import { Network } from "../dist";
+} from "@jiffy-labs/web3a";
+import { Network } from "@jiffy-labs/web3a";
 import "dotenv/config";
 
 const network = Network.VANAR_TESTNET;
