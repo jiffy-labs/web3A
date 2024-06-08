@@ -1,5 +1,11 @@
 # web3a
 
+## 0.1.4
+
+### Patch Changes
+
+- eaffcad: Adding vanar mainnet addressess
+
 ## 0.1.2
 
 ### Patch Changes
