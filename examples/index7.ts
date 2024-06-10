@@ -6,7 +6,7 @@ import {
 import { Network } from "@jiffy-labs/web3a";
 import "dotenv/config";
 
-const network = Network.VANAR_TESTNET;
+const network = Network.VANAR_MAINNET;
 const publicClient = await getPublicClient(network);
 const privateKey = process.env.PVT_KEY as `0x${string}`;
 const bundlerUrl = process.env.BUNDLER_URL as string;
@@ -22,7 +22,7 @@ const accountClient = await getAccountClientFromPrivateKeyV7({
   },
   index: 0n,
   paymaster: {
-    sponsoredBy: "Jiffy", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
+    sponsoredBy: "None", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
     url: paymasterUrl,
     header: { "x-api-key": JIFFYSCAN_API_KEY },
   },
@@ -43,7 +43,7 @@ if (paymasterUrl || balance > parseEther("0.04")) {
   // @ts-ignore
   const tx = await accountClient.sendTransaction({
     to: "0x8D582d98980248F1F0849710bd0626aDE4c44E3D",
-    value: 100n,
+    value: 0n,
     maxFeePerGas: 1000000000n,
     maxPriorityFeePerGas: 1000000000n,
   });

@@ -7,11 +7,11 @@ import { Network } from "@jiffy-labs/web3a";
 import "dotenv/config";
 import { getRequiredPrefund } from "permissionless";
 
-const publicClient = await getPublicClient(Network.VANAR_TESTNET);
+const publicClient = await getPublicClient(Network.VANAR_MAINNET);
 const privateKey = process.env.PVT_KEY as `0x${string}`;
 const bundlerUrl = process.env.BUNDLER_URL as string;
 const paymasterUrl = process.env.PAYMASTER_URL as string;
-const network = Network.VANAR_TESTNET;
+const network = Network.VANAR_MAINNET;
 const JIFFYSCAN_API_KEY = process.env.JIFFYSCAN_API_KEY as string;
 
 const accountClient = await getAccountClientFromPrivateKeyV6({
@@ -23,7 +23,7 @@ const accountClient = await getAccountClientFromPrivateKeyV6({
   },
   index: 0n,
   paymaster: {
-    sponsoredBy: "None", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
+    sponsoredBy: "Jiffy", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
     url: paymasterUrl,
     header: { "x-api-key": JIFFYSCAN_API_KEY },
   },

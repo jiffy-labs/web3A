@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@jiffy-labs/web3a':
-    specifier: ^0.1.1
-    version: 0.1.2(typescript@5.4.4)
+    specifier: ^0.1.3
+    version: 0.1.4(typescript@5.4.4)
   typescript:
     specifier: ^5.0.0
     version: 5.4.4
@@ -23,8 +23,8 @@ packages:
     resolution: {integrity: sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q==}
     dev: false
 
-  /@jiffy-labs/web3a@0.1.2(typescript@5.4.4):
-    resolution: {integrity: sha512-SkZcC2ELtM5kL0YaVi8xMZZ9uGjfCBJY5Eri77A6yWw4H84YGPss6z39//rU4kYh1FEPda78idYHFXeuSMvmHg==}
+  /@jiffy-labs/web3a@0.1.4(typescript@5.4.4):
+    resolution: {integrity: sha512-xL4mrdIpCpXT6X7y3AGEDyV4XJ4TD3OFwsYg75p/QTpG60KNuYwU3RLTXCgpvP7OSZBSg6TEg/1Lcu007TZ+wA==}
     peerDependencies:
       typescript: ^5.3.3
     dependencies:
