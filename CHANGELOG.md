@@ -1,5 +1,11 @@
 # web3a
 
+## 0.1.5
+
+### Patch Changes
+
+- c5d3644: fix
+
 ## 0.1.4
 
 ### Patch Changes
