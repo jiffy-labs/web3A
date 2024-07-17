@@ -21,7 +21,7 @@ var init_regex = __esm(() => {
 // node_modules/abitype/dist/esm/human-readable/formatAbiParameter.js
 function formatAbiParameter(abiParameter) {
   let type = abiParameter.type;
-  if (tupleRegex.test(abiParameter.type) && ("components" in abiParameter)) {
+  if (tupleRegex.test(abiParameter.type) && "components" in abiParameter) {
     type = "(";
     const length = abiParameter.components.length;
     for (let i = 0;i < length; i++) {
@@ -37,7 +37,7 @@ function formatAbiParameter(abiParameter) {
       type
     });
   }
-  if (("indexed" in abiParameter) && abiParameter.indexed)
+  if ("indexed" in abiParameter && abiParameter.indexed)
     type = `${type} indexed`;
   if (abiParameter.name)
     return `${type} ${abiParameter.name}`;
@@ -215,7 +215,7 @@ var init_base = __esm(() => {
   walk = function(err, fn) {
     if (fn?.(err))
       return err;
-    if (err && typeof err === "object" && ("cause" in err))
+    if (err && typeof err === "object" && "cause" in err)
       return walk(err.cause, fn);
     return fn ? null : err;
   };
@@ -1002,7 +1002,7 @@ var init__u64 = __esm(() => {
 // node_modules/@noble/hashes/esm/crypto.js
 var crypto;
 var init_crypto = __esm(() => {
-  crypto = typeof globalThis === "object" && ("crypto" in globalThis) ? globalThis.crypto : undefined;
+  crypto = typeof globalThis === "object" && "crypto" in globalThis ? globalThis.crypto : undefined;
 });
 
 // node_modules/@noble/hashes/esm/utils.js
@@ -1756,7 +1756,7 @@ function getAbiItem(parameters) {
         return toEventSelector(abiItem) === name;
       return false;
     }
-    return ("name" in abiItem) && abiItem.name === name;
+    return "name" in abiItem && abiItem.name === name;
   });
   if (abiItems.length === 0)
     return;
@@ -1778,13 +1778,13 @@ function getAbiItem(parameters) {
     if (abiItem.inputs.length !== args.length)
       continue;
     const matched = args.every((arg, index) => {
-      const abiParameter = ("inputs" in abiItem) && abiItem.inputs[index];
+      const abiParameter = "inputs" in abiItem && abiItem.inputs[index];
       if (!abiParameter)
         return false;
       return isArgOfType(arg, abiParameter);
     });
     if (matched) {
-      if (matchedAbiItem && ("inputs" in matchedAbiItem) && matchedAbiItem.inputs) {
+      if (matchedAbiItem && "inputs" in matchedAbiItem && matchedAbiItem.inputs) {
         const ambiguousTypes = getAmbiguousTypes(abiItem.inputs, matchedAbiItem.inputs, args);
         if (ambiguousTypes)
           throw new AbiItemAmbiguityError({
@@ -1815,7 +1815,7 @@ function isArgOfType(arg, abiParameter) {
     case "string":
       return argType === "string";
     default: {
-      if (abiParameterType === "tuple" && ("components" in abiParameter))
+      if (abiParameterType === "tuple" && "components" in abiParameter)
         return Object.values(abiParameter.components).every((component, index) => {
           return isArgOfType(Object.values(arg)[index], component);
         });
@@ -1837,7 +1837,7 @@ function getAmbiguousTypes(sourceParameters, targetParameters, args) {
   for (const parameterIndex in sourceParameters) {
     const sourceParameter = sourceParameters[parameterIndex];
     const targetParameter = targetParameters[parameterIndex];
-    if (sourceParameter.type === "tuple" && targetParameter.type === "tuple" && ("components" in sourceParameter) && ("components" in targetParameter))
+    if (sourceParameter.type === "tuple" && targetParameter.type === "tuple" && "components" in sourceParameter && "components" in targetParameter)
       return getAmbiguousTypes(sourceParameter.components, targetParameter.components, args[parameterIndex]);
     const types = [sourceParameter.type, targetParameter.type];
     const ambiguous = (() => {
@@ -1911,7 +1911,7 @@ function encodeFunctionData(parameters) {
   })();
   const abiItem = abi6[0];
   const signature = functionName;
-  const data3 = ("inputs" in abiItem) && abiItem.inputs ? encodeAbiParameters(abiItem.inputs, args ?? []) : undefined;
+  const data3 = "inputs" in abiItem && abiItem.inputs ? encodeAbiParameters(abiItem.inputs, args ?? []) : undefined;
   return concatHex([signature, data3 ?? "0x"]);
 }
 var init_encodeFunctionData = __esm(() => {
@@ -2421,7 +2421,7 @@ function decodeErrorResult(parameters) {
     });
   return {
     abiItem,
-    args: ("inputs" in abiItem) && abiItem.inputs && abiItem.inputs.length > 0 ? decodeAbiParameters(abiItem.inputs, slice(data3, 4)) : undefined,
+    args: "inputs" in abiItem && abiItem.inputs && abiItem.inputs.length > 0 ? decodeAbiParameters(abiItem.inputs, slice(data3, 4)) : undefined,
     errorName: abiItem.name
   };
 }
@@ -6577,7 +6577,7 @@ function encodeEventTopics(parameters) {
   const definition = formatAbiItem2(abiItem);
   const signature = toEventSelector(definition);
   let topics = [];
-  if (args && ("inputs" in abiItem)) {
+  if (args && "inputs" in abiItem) {
     const indexedInputs = abiItem.inputs?.filter((param) => ("indexed" in param) && param.indexed);
     const args_ = Array.isArray(args) ? args : Object.values(args).length > 0 ? indexedInputs?.map((x) => args[x.name]) ?? [] : [];
     if (args_.length > 0) {
@@ -7844,7 +7844,7 @@ var cacheKey = (id) => `blockNumber.${id}`;
 
 // node_modules/viem/_esm/actions/public/getFilterChanges.js
 async function getFilterChanges(_client, { filter }) {
-  const strict = ("strict" in filter) && filter.strict;
+  const strict = "strict" in filter && filter.strict;
   const logs = await filter.request({
     method: "eth_getFilterChanges",
     params: [filter.id]
@@ -8194,7 +8194,7 @@ function buildRequest(request4, options = {}) {
   };
 }
 function shouldRetry(error) {
-  if (("code" in error) && typeof error.code === "number") {
+  if ("code" in error && typeof error.code === "number") {
     if (error.code === -1)
       return true;
     if (error.code === LimitExceededRpcError.code)
@@ -10699,6 +10699,7 @@ var Network;
 (function(Network2) {
   Network2[Network2["SEPOLIA"] = 0] = "SEPOLIA";
   Network2[Network2["VANAR_TESTNET"] = 1] = "VANAR_TESTNET";
+  Network2[Network2["VANAR_MAINNET"] = 2] = "VANAR_MAINNET";
 })(Network || (Network = {}));
 var vanarTestnet = defineChain({
   id: 78600,
@@ -10721,9 +10722,28 @@ var vanarTestnet = defineChain({
     }
   }
 });
+var vanarMainnet = defineChain({
+  id: 2040,
+  name: "VANAR_MAINNET",
+  nativeCurrency: {
+    decimals: 18,
+    name: "VANRY",
+    symbol: "VANRY"
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://rpc.vanarchain.com"],
+      webSocket: ["wss://ws.vanarchain.com"]
+    }
+  },
+  blockExplorers: {
+    default: { name: "Explorer", url: "https://explorer.vanarchain.com" }
+  }
+});
 var NetworkChainMap = {
   [Network.SEPOLIA]: sepolia,
-  [Network.VANAR_TESTNET]: vanarTestnet
+  [Network.VANAR_TESTNET]: vanarTestnet,
+  [Network.VANAR_MAINNET]: vanarMainnet
 };
 var ADDRESS_TYPES;
 (function(ADDRESS_TYPES2) {
@@ -10733,6 +10753,10 @@ var SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP = {
   [Network.VANAR_TESTNET]: {
     "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789": "0xeD08Bfd2478C9616f2E2F51F4f6b28D3EE16F99B",
     "0x0000000071727De22E5E9d8BAf0edAc6f37da032": "0x41f9E11556e0119E452dF67B2311EC46071ad6c7"
+  },
+  [Network.VANAR_MAINNET]: {
+    "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789": "0xD02a5F77C53A3520b92677eFcfeDa69aC123EbCe",
+    "0x0000000071727De22E5E9d8BAf0edAc6f37da032": "0x0baDC4D69Ac9e13786C8fC30eB543C3472Fd77EA"
   },
   [Network.SEPOLIA]: {
     "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789": "0x9fd25AC3Ac6dfb00C4d11FA32E8454525bF4cFD0",
@@ -30321,12 +30345,13 @@ function getSendUserOperationError(err, args) {
 var sendUserOperation = async (client, args) => {
   const { userOperation, entryPoint } = args;
   try {
-    console.log("inside bundler sendUserOperation");
     const userOperationHash = await client.request({
       method: "eth_sendUserOperation",
-      params: [deepHexlify(userOperation), entryPoint]
+      params: [
+        deepHexlify(userOperation),
+        entryPoint
+      ]
     });
-    console.log("eth_sendUserOperation", userOperationHash);
     return userOperationHash;
   } catch (err) {
     throw getSendUserOperationError(err, args);
@@ -30884,12 +30909,7 @@ var waitForUserOperationReceipt = (bundlerClient, { hash: hash3, pollingInterval
 
 // node_modules/permissionless/_esm/actions/smartAccount/prepareUserOperationRequest.js
 async function prepareUserOperationRequestForEntryPointV06(client, args, stateOverrides) {
-  console.log("preparing user operation for entry point v6");
-  const {
-    account: account_ = client.account,
-    userOperation: partialUserOperation,
-    middleware
-  } = args;
+  const { account: account_ = client.account, userOperation: partialUserOperation, middleware } = args;
   if (!account_)
     throw new AccountOrClientNotFoundError;
   const account4 = parseAccount10(account_);
@@ -30956,12 +30976,7 @@ async function prepareUserOperationRequestForEntryPointV06(client, args, stateOv
   return userOperation;
 }
 async function prepareUserOperationRequestEntryPointV07(client, args, stateOverrides) {
-  console.log("preparing user operation for entry point v7");
-  const {
-    account: account_ = client.account,
-    userOperation: partialUserOperation,
-    middleware
-  } = args;
+  const { account: account_ = client.account, userOperation: partialUserOperation, middleware } = args;
   if (!account_)
     throw new AccountOrClientNotFoundError;
   const account4 = parseAccount10(account_);
@@ -30986,7 +31001,6 @@ async function prepareUserOperationRequestEntryPointV07(client, args, stateOverr
     maxPriorityFeePerGas: partialUserOperation.maxPriorityFeePerGas || gasEstimation?.maxPriorityFeePerGas || BigInt(0),
     signature: partialUserOperation.signature || "0x"
   };
-  console.log("userOperation", userOperation);
   if (userOperation.signature === "0x") {
     userOperation.signature = await account4.getDummySignature(userOperation);
   }
@@ -31049,16 +31063,12 @@ async function prepareUserOperationRequest(client, args, stateOverrides) {
 
 // node_modules/permissionless/_esm/actions/smartAccount/sendUserOperation.js
 async function sendUserOperation4(client, args) {
-  console.log("hereerere");
-  console.log(args);
   const { account: account_ = client.account } = args;
   if (!account_)
     throw new AccountOrClientNotFoundError;
   const account4 = parseAccount10(account_);
   const userOperation = await getAction(client, prepareUserOperationRequest, "prepareUserOperationRequest")(args);
-  console.log(userOperation);
   userOperation.signature = await account4.signUserOperation(userOperation);
-  console.log("sendind sending user operation");
   return sendUserOperation(client, {
     userOperation,
     entryPoint: account4.entryPoint
@@ -31097,16 +31107,7 @@ async function deployContract(client, args) {
 
 // node_modules/permissionless/_esm/actions/smartAccount/sendTransaction.js
 async function sendTransaction(client, args) {
-  const {
-    account: account_ = client.account,
-    data: data4,
-    maxFeePerGas,
-    maxPriorityFeePerGas,
-    to,
-    value,
-    nonce,
-    middleware
-  } = args;
+  const { account: account_ = client.account, data: data4, maxFeePerGas, maxPriorityFeePerGas, to, value, nonce, middleware } = args;
   if (!account_) {
     throw new AccountOrClientNotFoundError({
       docsPath: "/docs/actions/wallet/sendTransaction"
@@ -31123,7 +31124,6 @@ async function sendTransaction(client, args) {
     value: value || BigInt(0),
     data: data4 || "0x"
   });
-  console.log("sending user operation", callData);
   const userOpHash = await getAction(client, sendUserOperation4, "sendUserOperation")({
     userOperation: {
       sender: account4.address,
@@ -31135,11 +31135,9 @@ async function sendTransaction(client, args) {
     account: account4,
     middleware
   });
-  console.log("userOpHash", userOpHash);
   const userOperationReceipt = await getAction(client, waitForUserOperationReceipt, "waitForUserOperationReceipt")({
     hash: userOpHash
   });
-  console.log("userOperationReceipt", userOperationReceipt);
   return userOperationReceipt?.receipt.transactionHash;
 }
 
@@ -31298,7 +31296,33 @@ class JiffyPaymaster extends Paymaster {
     this.chainId = chainId;
     this.headers = headers;
   }
-  sponsorUserOperation = async (args) => {
+  sponsorUserOperationV6 = async (args) => {
+    const { userOperation, entryPoint } = args;
+    let modifiedUserOperation = userOperation;
+    let paymasterRes = null;
+    const options = {
+      headers: {
+        "x-api-key": this.headers?.["x-api-key"] ? this.headers["x-api-key"] : ""
+      }
+    };
+    paymasterRes = await fetch(`${this.paymasterUrl}/${this.chainId}/sponsorUserOperation?` + new URLSearchParams({
+      userOperation: JSON.stringify(modifiedUserOperation, (key, value) => typeof value === "bigint" ? value.toString() : value),
+      entryPoint
+    }), options);
+    let body = await paymasterRes.json();
+    const paymasterResJson = body;
+    if (paymasterResJson?.callGasLimit) {
+      modifiedUserOperation = {
+        ...modifiedUserOperation,
+        callGasLimit: BigInt(paymasterResJson.callGasLimit),
+        preVerificationGas: BigInt(paymasterResJson.preVerificationGas),
+        verificationGasLimit: BigInt(paymasterResJson.verificationGasLimit),
+        paymasterAndData: paymasterResJson && paymasterResJson.paymasterAndData ? paymasterResJson.paymasterAndData : "0x"
+      };
+    }
+    return modifiedUserOperation;
+  };
+  sponsorUserOperationV7 = async (args) => {
     const { userOperation, entryPoint } = args;
     let modifiedUserOperation = userOperation;
     let paymasterRes = null;
@@ -31318,7 +31342,10 @@ class JiffyPaymaster extends Paymaster {
         callGasLimit: BigInt(paymasterResJson.callGasLimit),
         preVerificationGas: BigInt(paymasterResJson.preVerificationGas),
         verificationGasLimit: BigInt(paymasterResJson.verificationGasLimit),
-        paymasterAndData: paymasterResJson && paymasterResJson.paymasterAndData ? paymasterResJson.paymasterAndData : "0x"
+        paymaster: paymasterResJson && paymasterResJson.paymaster ? paymasterResJson.paymaster : "0x",
+        paymasterData: paymasterResJson && paymasterResJson.paymasterData ? paymasterResJson.paymasterData : "0x",
+        paymasterVerificationGasLimit: paymasterResJson && paymasterResJson.paymasterVerificationGasLimit ? BigInt(paymasterResJson.paymasterVerificationGasLimit) : 0n,
+        paymasterPostOpGasLimit: paymasterResJson && paymasterResJson.paymasterPostOpGasLimit ? BigInt(paymasterResJson.paymasterPostOpGasLimit) : 0n
       };
     }
     return modifiedUserOperation;
@@ -31358,7 +31385,10 @@ var getAccountClientFromPrivateKeyV7 = async ({
       fetchOptions: {
         headers: bundler.header
       }
-    })
+    }),
+    middleware: {
+      sponsorUserOperation: paymasterClient ? paymasterClient.sponsorUserOperationV7 : undefined
+    }
   });
   return smartAccClient;
 };
@@ -31378,10 +31408,11 @@ var getAccountClientFromPrivateKeyV6 = async ({
   });
   const account4 = await privateKeyToSimpleSmartAccount(publicClient2, {
     privateKey,
-    factoryAddress: SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP[Network.VANAR_TESTNET]["0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789"],
+    factoryAddress: SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP[network]["0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789"],
     entryPoint: "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
     index: index2 || 0n
   });
+  console.log("smartaccount - paymaster", paymaster4.header);
   const paymasterClient = paymaster4.url && paymaster4.sponsoredBy == "Jiffy" ? new JiffyPaymaster(paymaster4.url, publicClient2?.chain.id, paymaster4.header) : undefined;
   const smartAccClient = createSmartAccountClient({
     account: account4,
@@ -31391,7 +31422,10 @@ var getAccountClientFromPrivateKeyV6 = async ({
       fetchOptions: {
         headers: bundler.header
       }
-    })
+    }),
+    middleware: {
+      sponsorUserOperation: paymasterClient ? paymasterClient.sponsorUserOperationV6 : undefined
+    }
   });
   return smartAccClient;
 };

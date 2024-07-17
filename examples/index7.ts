@@ -22,7 +22,7 @@ const accountClient = await getAccountClientFromPrivateKeyV7({
   },
   index: 0n,
   paymaster: {
-    sponsoredBy: "None", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
+    sponsoredBy: "Jiffy", // "None" | "Jiffy" , if "Jiffy" is selected, paymasterUrl must be provided
     url: paymasterUrl,
     header: { "x-api-key": JIFFYSCAN_API_KEY },
   },

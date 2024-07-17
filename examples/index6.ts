@@ -1,9 +1,6 @@
 import { parseEther } from "viem";
-import {
-  getAccountClientFromPrivateKeyV6,
-  getPublicClient,
-} from "@jiffy-labs/web3a";
-import { Network } from "@jiffy-labs/web3a";
+import { getAccountClientFromPrivateKeyV6, getPublicClient } from "../dist";
+import { Network } from "../dist";
 import "dotenv/config";
 import { getRequiredPrefund } from "permissionless";
 
@@ -13,6 +10,8 @@ const bundlerUrl = process.env.BUNDLER_URL as string;
 const paymasterUrl = process.env.PAYMASTER_URL as string;
 const network = Network.VANAR_MAINNET;
 const JIFFYSCAN_API_KEY = process.env.JIFFYSCAN_API_KEY as string;
+
+console.log(JIFFYSCAN_API_KEY);
 
 const accountClient = await getAccountClientFromPrivateKeyV6({
   privateKey: privateKey,
@@ -38,11 +37,13 @@ const balance = await publicClient.getBalance({
   address: address as `0x${string}`,
 });
 
+console.log(balance);
+
 if (paymasterUrl || balance > parseEther("0.04")) {
   // @ts-ignore
   const tx = await accountClient.sendTransaction({
     to: "0x8D582d98980248F1F0849710bd0626aDE4c44E3D",
-    value: 100_000_000n,
+    value: 0n,
     maxFeePerGas: 1_000_000_000n,
     maxPriorityFeePerGas: 1_000_000_000n,
   });

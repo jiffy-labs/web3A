@@ -127,6 +127,7 @@ export const getAccountClientFromPrivateKeyV6 = async ({
     index: index || 0n,
   });
 
+  console.log("smartaccount - paymaster", paymaster.header);
   const paymasterClient =
     paymaster.url && paymaster.sponsoredBy == "Jiffy"
       ? new JiffyPaymaster(

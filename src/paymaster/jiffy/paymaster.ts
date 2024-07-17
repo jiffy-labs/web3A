@@ -27,10 +27,11 @@ export class JiffyPaymaster extends Paymaster {
     let paymasterRes = null;
     const options = {
       headers: {
-        "x-api-key": this.headers?.["x-api-key"] ? this.headers["x-api"] : "",
+        "x-api-key": this.headers?.["x-api-key"]
+          ? this.headers["x-api-key"] as string
+          : "",
       },
     };
-
     paymasterRes = await fetch(
       `${this.paymasterUrl}/${this.chainId}/sponsorUserOperation?` +
       new URLSearchParams({
@@ -38,11 +39,12 @@ export class JiffyPaymaster extends Paymaster {
           typeof value === "bigint" ? value.toString() : value
         ),
         entryPoint: entryPoint,
-      }), // @ts-expect-error: Argument of type
+      }),
       options
     );
+    let body = await paymasterRes.json();
 
-    const paymasterResJson = (await paymasterRes.json()) as {
+    const paymasterResJson = body as {
       paymasterAndData: `0x${string}`;
       callGasLimit: string;
       preVerificationGas: string;
@@ -72,7 +74,7 @@ export class JiffyPaymaster extends Paymaster {
     let paymasterRes = null;
     const options = {
       headers: {
-        "x-api-key": this.headers?.["x-api-key"] ? this.headers["x-api"] : "",
+        "x-api-key": this.headers?.["x-api-key"] ? this.headers["x-api"] as string : "",
       },
     };
 
@@ -83,7 +85,7 @@ export class JiffyPaymaster extends Paymaster {
           typeof value === "bigint" ? value.toString() : value
         ),
         entryPoint: entryPoint,
-      }), // @ts-expect-error: Argument of type
+      }),
       options
     );
 
