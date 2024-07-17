@@ -1,5 +1,12 @@
 # web3a
 
+## 0.1.6
+
+### Patch Changes
+
+- c5d3644: fix
+- 8b128cc: 0.1.5
+
 ## 0.1.4
 
 ### Patch Changes
