@@ -1,5 +1,11 @@
 # web3a
 
+## 0.1.7
+
+### Patch Changes
+
+- 73171b3: Added open campus codex
+
 ## 0.1.6
 
 ### Patch Changes
