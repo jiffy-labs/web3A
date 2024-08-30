@@ -22,9 +22,7 @@ import {
   type ENTRYPOINT_ADDRESS_V06_TYPE,
 } from "permissionless/types";
 
-export const publicClient: PublicClient = createPublicClient({
-  transport: http("https://rpca-vanguard.vanarchain.com/"),
-});
+
 export type Bundler = {
   url: string;
   header?: Record<string, string>;
@@ -66,7 +64,7 @@ export const getAccountClientFromPrivateKeyV7 = async ({
     privateKey: privateKey as `0x${string}`,
     factoryAddress:
       SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP[network][
-        "0x0000000071727De22E5E9d8BAf0edAc6f37da032"
+      "0x0000000071727De22E5E9d8BAf0edAc6f37da032"
       ],
     entryPoint: "0x0000000071727De22E5E9d8BAf0edAc6f37da032",
     index: index || 0n,
@@ -75,10 +73,10 @@ export const getAccountClientFromPrivateKeyV7 = async ({
   const paymasterClient =
     paymaster.url && paymaster.sponsoredBy == "Jiffy"
       ? new JiffyPaymaster(
-          paymaster.url,
-          publicClient?.chain.id,
-          paymaster.header
-        )
+        paymaster.url,
+        publicClient?.chain.id,
+        paymaster.header
+      )
       : undefined;
 
   const smartAccClient = createSmartAccountClient({
@@ -96,6 +94,7 @@ export const getAccountClientFromPrivateKeyV7 = async ({
         : undefined,
     },
   });
+  
   return smartAccClient;
 };
 
@@ -121,7 +120,7 @@ export const getAccountClientFromPrivateKeyV6 = async ({
     privateKey: privateKey as `0x${string}`,
     factoryAddress:
       SIMPLE_ACCOUNT_FACTORY_ADDRESS_MAP[network][
-        "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789"
+      "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789"
       ],
     entryPoint: "0x5FF137D4b0FDCD49DcA30c7CF57E578a026d2789",
     index: index || 0n,
@@ -131,10 +130,10 @@ export const getAccountClientFromPrivateKeyV6 = async ({
   const paymasterClient =
     paymaster.url && paymaster.sponsoredBy == "Jiffy"
       ? new JiffyPaymaster(
-          paymaster.url,
-          publicClient?.chain.id,
-          paymaster.header
-        )
+        paymaster.url,
+        publicClient?.chain.id,
+        paymaster.header
+      )
       : undefined;
 
   const smartAccClient = createSmartAccountClient({
